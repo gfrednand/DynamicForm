@@ -1,0 +1,22 @@
+{
+  "name": "@gfrednand/dynamic-form",
+  "version": "0.0.3",
+  "peerDependencies": {
+    "@angular/common": "^11.0.9",
+    "@angular/core": "^11.0.9"
+  },
+  "dependencies": {
+    "@angular/cdk": "^11.2.0",
+    "@angular/cli": "^11.0.7",
+    "@angular/material": "^11.2.0",
+    "@angular/forms": "~11.0.5",
+    "tslib": "^2.0.0"
+  },
+  "description": "This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.9.",
+  "main": "karma.conf.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gilbert Chami",
+  "license": "ISC"
+}
