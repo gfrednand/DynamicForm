@@ -8,6 +8,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AttachmentComponent } from './attachment/attachment.component';
 import { ButtonComponent } from './button/button.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
@@ -55,9 +57,9 @@ import { DynamicFormComponent } from './dynamic-form.component';
     MatOptionModule,
     MatIconModule,
     MatProgressBarModule,
-    MatButtonModule
-    
-    
+    MatButtonModule,
+    MatDatepickerModule,
+    MatCheckboxModule
   ],
   providers: [
     DatePipe

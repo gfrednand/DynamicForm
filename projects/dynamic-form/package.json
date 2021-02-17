@@ -1,6 +1,6 @@
 {
   "name": "@gfrednand/dynamic-form",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "peerDependencies": {
     "@angular/common": "^11.0.9",
     "@angular/core": "^11.0.9"
@@ -11,7 +11,15 @@
     "@angular/forms": "~11.0.5",
     "tslib": "^2.0.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gfrednand/DynamicForm.git"
+  },
   "description": "This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.9.",
+  "bugs": {
+    "url": "https://github.com/gfrednand/DynamicForm/issues"
+  },
+  "homepage": "https://github.com/gfrednand/DynamicForm#readme",
   "main": "karma.conf.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
