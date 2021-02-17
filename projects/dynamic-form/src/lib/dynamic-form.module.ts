@@ -4,7 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AttachmentComponent } from './attachment/attachment.component';
 import { ButtonComponent } from './button/button.component';
@@ -12,7 +14,6 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
 import { DateComponent } from './date/date.component';
 import { DynamicFieldDirective } from './dynamic-field/dynamic-field.directive';
 import { InputComponent } from './input/input.component';
-import { MainDynamicFormComponent } from './main-dynamic-form/main-dynamic-form.component';
 import { MatSelectSearchComponent } from './mat-select-search/mat-select-search.component';
 import { IsObservable } from './pipes/is-observable.pipe';
 import { SearchPipe } from './pipes/search.pipe';
@@ -20,12 +21,13 @@ import { WithLoadingPipe, WithLoadingNoObsCheckPipe } from './pipes/with-loading
 import { RadiobuttonComponent } from './radiobutton/radiobutton.component';
 import { SelectComponent } from './select/select.component';
 import { TextareaComponent } from './textarea/textarea.component';
+import { DynamicFormComponent } from './dynamic-form.component';
 
 
 
 @NgModule({
   declarations: [
-    MainDynamicFormComponent,
+    DynamicFormComponent,
     InputComponent,
     ButtonComponent,
     SelectComponent,
@@ -51,7 +53,9 @@ import { TextareaComponent } from './textarea/textarea.component';
     MatInputModule,
     MatSelectModule,
     MatOptionModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressBarModule,
+    MatButtonModule
     
     
   ],
@@ -59,7 +63,7 @@ import { TextareaComponent } from './textarea/textarea.component';
     DatePipe
   ],
   exports: [
-    MainDynamicFormComponent,
+    DynamicFormComponent,
     MatSelectSearchComponent,
 
     // Pipes
