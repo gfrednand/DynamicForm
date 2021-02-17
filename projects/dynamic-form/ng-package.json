@@ -7,8 +7,6 @@
   "whitelistedNonPeerDependencies": [
     "@angular/material",
     "@angular/cdk",
-    "@angular/forms",
-    "@angular/cli",
-    "@schematics/angular"
+    "@angular/forms"
   ]
 }

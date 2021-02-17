@@ -1,7 +1,5 @@
 # DynamicForm
 
-**Update**: This library is Ivy Compatible and is tested against an Angular 8 app.
-
 * A simple dynamic form `component` to be used in component html.
 * This components enhances the funtionality of Angular Form Fields.
 * It is developed using `Angular >=8.0.0` and its newly introduced `ng g library` schematics.
