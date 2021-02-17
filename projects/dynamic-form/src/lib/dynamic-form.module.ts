@@ -65,6 +65,8 @@ import { DynamicFormComponent } from './dynamic-form.component';
     DatePipe
   ],
   exports: [
+    ReactiveFormsModule,
+    FormsModule,
     DynamicFormComponent,
     MatSelectSearchComponent,
 

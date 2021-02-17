@@ -1,15 +1,12 @@
 {
   "name": "@gfrednand/dynamic-form",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "peerDependencies": {
     "@angular/common": "^11.0.9",
-    "@angular/core": "^11.0.9"
-  },
-  "dependencies": {
+    "@angular/core": "^11.0.9",
     "@angular/cdk": "^11.2.0",
     "@angular/material": "^11.2.0",
-    "@angular/forms": "~11.0.5",
-    "tslib": "^2.0.0"
+    "@angular/forms": "~11.0.5"
   },
   "repository": {
     "type": "git",
@@ -25,5 +22,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Gilbert Chami",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@angular/cdk": "^11.2.0",
+    "@angular/forms": "^11.2.0",
+    "@angular/material": "^11.2.0"
+  }
 }

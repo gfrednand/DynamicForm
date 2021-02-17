@@ -6,6 +6,7 @@ export * from './lib/dynamic-form.service';
 export * from './lib/dynamic-form.module';
 export * from './lib/dynamic-form.component';
 export * from './lib/field.interface';
+export * from './lib/custom-validators';
 export * from './lib/input/input.component';
 export * from './lib/button/button.component';
 export * from './lib/attachment/attachment.component';
