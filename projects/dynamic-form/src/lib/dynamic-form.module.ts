@@ -24,6 +24,7 @@ import { RadiobuttonComponent } from './radiobutton/radiobutton.component';
 import { SelectComponent } from './select/select.component';
 import { TextareaComponent } from './textarea/textarea.component';
 import { DynamicFormComponent } from './dynamic-form.component';
+import { ReplacePipe } from './pipes/replace.pipe';
 
 
 
@@ -46,6 +47,7 @@ import { DynamicFormComponent } from './dynamic-form.component';
     IsObservable,
     WithLoadingPipe,
     WithLoadingNoObsCheckPipe,
+    ReplacePipe
   ],
   imports: [
     FormsModule,
@@ -65,16 +67,9 @@ import { DynamicFormComponent } from './dynamic-form.component';
     DatePipe
   ],
   exports: [
-    ReactiveFormsModule,
-    FormsModule,
-    DynamicFormComponent,
-    MatSelectSearchComponent,
 
-    // Pipes
-    SearchPipe,
-    IsObservable,
-    WithLoadingPipe,
-    WithLoadingNoObsCheckPipe,
+    DynamicFormComponent,
+
   ]
 })
 export class DynamicFormModule { }

@@ -1,6 +1,6 @@
 {
   "name": "@gfrednand/dynamic-form",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "peerDependencies": {
     "@angular/common": "^11.0.9",
     "@angular/core": "^11.0.9",
@@ -27,7 +27,6 @@
   "devDependencies": {
     "@angular/cdk": "^11.2.0",
     "@angular/forms": "^11.2.0",
-    "@angular/material": "^11.2.0",
-    "rxjs": "~6.6.0"
+    "@angular/material": "^11.2.0"
   }
 }

@@ -20,3 +20,4 @@ export * from './lib/dynamic-field/dynamic-field.directive';
 export * from './lib/pipes/search.pipe';
 export * from './lib/pipes/with-loading.pipe';
 export * from './lib/pipes/is-observable.pipe';
+export * from './lib/pipes/replace.pipe';
