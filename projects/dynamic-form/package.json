@@ -1,19 +1,19 @@
 {
   "name": "@gfrednand/dynamic-form",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "peerDependencies": {
+    "@angular/cdk": "^11.2.0",
     "@angular/common": "^11.0.9",
     "@angular/core": "^11.0.9",
-    "@angular/cdk": "^11.2.0",
-    "@angular/material": "^11.2.0",
     "@angular/forms": "~11.0.5",
+    "@angular/material": "^11.2.0",
     "rxjs": "~6.6.0"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/gfrednand/DynamicForm.git"
   },
-  "description": "This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.9.",
+  "description": "This library help to manage material form fields",
   "bugs": {
     "url": "https://github.com/gfrednand/DynamicForm/issues"
   },

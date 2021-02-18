@@ -1,9 +1,20 @@
 <input matInput class="mat-select-search-input mat-select-search-hidden"/>
 
-<div class="mat-select-search-inner"
-     [ngClass]="{'mat-select-search-inner-multiple': matSelect.multiple}">
+<div class="mat-select-search-inner mat-typography mat-datepicker-content mat-tab-header"
+     [ngClass]="{'mat-select-search-inner-multiple': matSelect.multiple, 'mat-select-search-inner-toggle-all': _isToggleAllCheckboxVisible() }">
+     
+  <mat-checkbox *ngIf="_isToggleAllCheckboxVisible()"
+     [color]="matFormField?.color"
+     class="mat-select-search-toggle-all-checkbox"
+     [checked]="toggleAllCheckboxChecked"
+     [indeterminate]="toggleAllCheckboxIndeterminate"
+     [matTooltip]="toggleAllCheckboxTooltipMessage"
+     matTooltipClass="ngx-mat-select-search-toggle-all-tooltip"
+     [matTooltipPosition]="toogleAllCheckboxTooltipPosition"
+     (change)="_emitSelectAllBooleanToParent($event.checked)"
+></mat-checkbox>
   <input matInput
-         class="mat-select-search-input"
+         class="mat-select-search-input mat-input-element"
          #searchSelectInput
          (keydown)="_handleKeydown($event)"
          (input)="onInputChange($event.target.value)"
@@ -11,16 +22,22 @@
          [placeholder]="placeholderLabel"
          autocomplete="off"
   />
-  <button mat-button *ngIf="value"
+
+  <mat-spinner *ngIf="searching"
+  class="mat-select-search-spinner"
+  diameter="16"></mat-spinner>
+
+  <button mat-button *ngIf="geTvalue()"
           mat-icon-button
           aria-label="Clear"
           (click)="_reset(true)"
           class="mat-select-search-clear">
     <mat-icon>close</mat-icon>
   </button>
+  <ng-content select=".mat-select-search-custom-header-content"></ng-content>
 </div>
 
-<div *ngIf="noEntriesFoundLabel && value && _options?.length === 0"
+<div *ngIf="noEntriesFoundLabel && geTvalue() && _options?.length === 0"
      class="mat-select-search-no-entries-found">
   {{noEntriesFoundLabel}}
 </div>

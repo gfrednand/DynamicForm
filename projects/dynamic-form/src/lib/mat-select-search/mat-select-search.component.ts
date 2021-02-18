@@ -7,6 +7,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
+
 import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 
@@ -25,10 +26,6 @@ import { take, takeUntil } from 'rxjs/operators';
 })
 export class MatSelectSearchComponent implements OnInit, OnDestroy, AfterViewInit, ControlValueAccessor {
 
-  /** Current search value */
-  get value(): string {
-    return this._value;
-  }
 
 
   constructor(@Inject(MatSelect) public matSelect: MatSelect,
@@ -39,6 +36,10 @@ export class MatSelectSearchComponent implements OnInit, OnDestroy, AfterViewIni
 
   /** Label of the search placeholder */
   @Input() placeholderLabel = 'Search';
+
+  @Input() showToggleAllCheckbox = false;
+
+  @Input() searching = false;
 
   /** Label to be shown when no entries are found. Set to null if no message should be shown. */
   @Input() noEntriesFoundLabel = 'No Record Found';
@@ -62,6 +63,10 @@ export class MatSelectSearchComponent implements OnInit, OnDestroy, AfterViewIni
   /** Subject that emits when the component has been destroyed. */
   private _onDestroy = new Subject<void>();
 
+  /** Current search value */
+  geTvalue() {
+    return this._value;
+  }
   onChange: Function = (_: any) => { };
   onTouched: Function = (_: any) => { };
 
@@ -120,6 +125,10 @@ export class MatSelectSearchComponent implements OnInit, OnDestroy, AfterViewIni
       });
 
     this.initMultipleHandling();
+  }
+
+  _isToggleAllCheckboxVisible(): boolean {
+    return this.matSelect.multiple && this.showToggleAllCheckbox;
   }
 
   ngOnDestroy() {
