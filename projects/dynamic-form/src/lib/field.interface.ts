@@ -26,7 +26,7 @@ export interface BaseConfig {
   multiple?: boolean;
   showWhen?: string;
   hideRequiredMarker?: boolean;
-  rowClass?: 'col3' | 'col4' | 'col6' | 'col12';
+  colspan?: 1 | 2 | 3 | 4;
   validations?: Validator[];
   acceptType?: ('.pdf' | '.xls' | '.png' | '.jpg') [];
   filterValueKey?: string;

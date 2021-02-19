@@ -1,6 +1,6 @@
 {
   "name": "@gfrednand/dynamic-form",
-  "version": "0.0.14",
+  "version": "0.0.17",
   "peerDependencies": {
     "@angular/cdk": "^11.2.0",
     "@angular/common": "^11.0.9",

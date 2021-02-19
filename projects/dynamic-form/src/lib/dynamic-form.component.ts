@@ -12,22 +12,19 @@ import { FieldConfig, FieldType } from './field.interface';
   <p *ngIf="loading">{{loadingMessage}}</p>
 
   <form class="dynamic-form" [formGroup]="form" (submit)="onSubmit($event)" autocomplete="off">
-    <div class="row">
-      <ng-container *ngFor="let field of fields || []">
-        <div
-          [ngClass]="{
-            'col-md-6': field.rowClass === 'col6' || !field.rowClass,
-            'col-md-3': field.rowClass === 'col3',
-            'col-md-4': field.rowClass === 'col4',
-            'col-md-12': field.rowClass === 'col12' }" *ngIf="isVisible(field) ">
-          <ng-container appDynamicField [field]="field" [group]="form" (cancelForm)="cancelForm()" (fieldValue)="fieldValue($event)"></ng-container>
-        </div>
-      </ng-container>
+  <div class="container">
+    <mat-grid-list cols="4" rowHeight="2:2" gutterSize="10px">
+      <mat-grid-tile 
+      *ngFor="let field of fields || []"
+      rowspan="1" 
+      [colspan]="field.colspan || 4">
+          <ng-container appDynamicField [field]="field" [group]="form" (cancelForm)="cancelForm()" (fieldValue)="fieldValue($event)" *ngIf="isVisible(field) "></ng-container>
+      </mat-grid-tile>
+    </mat-grid-list>
     </div>
   </form>
 `,
-  styles: [
-  ]
+  styles: ['.container { padding: 5px; }']
 })
 export class DynamicFormComponent implements OnInit, OnChanges {
   @Input() fields: FieldConfig[] = [];
