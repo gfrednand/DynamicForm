@@ -1,5 +1,5 @@
 import { Component, OnInit, HostBinding, Output, EventEmitter, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { isObservable, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FieldConfig } from '../field.interface';
@@ -13,16 +13,18 @@ import { FieldConfig } from '../field.interface';
     <mat-form-field class="demo-full-width margin-top" [hideRequiredMarker]="field?.hideRequiredMarker" [formGroup]="group" appearance="outline">
       <mat-label>{{field?.label}}</mat-label>
       <mat-select [placeholder]="field?.label" [formControlName]="field?.key" (selectionChange)="fieldChange($event)" [multiple]="field.multiple">
-        <app-mat-select-search [(ngModel)]="searchValue"  ngDefaultControl [ngModelOptions]="{standalone: true}"></app-mat-select-search>
+        <mat-option>
+          <app-mat-select-search [formControl]="searchValueCtrl" placeholderLabel="Search"  [searching]="data.options.loading"></app-mat-select-search>
+        </mat-option>
           <span *ngIf="!field.removeUnderscore; else removeUnderScore">
-            <mat-option  *ngFor="let item of (data.options.value ? data.options.value : field.options) || [] | search: field.filterKey: filterVal | search: searchParameters: searchValue"
+            <mat-option  *ngFor="let item of (data.options.value ? data.options.value : field.options) || [] | search: field.filterKey: filterVal | search: searchParameters: searchValueCtrl.value"
             [value]="item.value"
             [disabled]="item.disabled"
             [ngClass]="{'danger': item.danger}">{{item.name}}
           </mat-option>
           </span>
         <ng-template #removeUnderScore>
-          <mat-option *ngFor="let item of (data.options.value ? data.options.value : field.options) || [] | search: field.filterKey: filterVal | search: searchParameters: searchValue"
+          <mat-option *ngFor="let item of (data.options.value ? data.options.value : field.options) || [] | search: field.filterKey: filterVal | search: searchParameters: searchValueCtrl.value"
            [value]="item.value" 
            [disabled]="item.disabled"
            [ngClass]="{'danger': item.danger}">{{ item.name | replace: '_' : ' '}}
@@ -35,7 +37,6 @@ import { FieldConfig } from '../field.interface';
     </mat-form-field>
     <!-- </ng-template> -->
     <ng-template [ngIf]="data.options.loading">
-            <mat-progress-bar  mode="query"></mat-progress-bar>
             <h6>Loading {{field?.label}} Options...</h6>
       </ng-template>
     </ng-container>
@@ -50,8 +51,8 @@ export class SelectComponent implements OnInit, AfterViewInit {
   field: FieldConfig;
   group: FormGroup;
   @Output() fieldValue = new EventEmitter();
-
-  searchValue = '';
+  searching = false;
+  searchValueCtrl: FormControl = new FormControl();
   filterVal;
   searchParameters: string;
   // fieldOptions: any;

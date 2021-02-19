@@ -25,6 +25,7 @@ import { SelectComponent } from './select/select.component';
 import { TextareaComponent } from './textarea/textarea.component';
 import { DynamicFormComponent } from './dynamic-form.component';
 import { ReplacePipe } from './pipes/replace.pipe';
+import { MatSelectSearchClearDirective } from './mat-select-search/mat-select-search-clear.directive';
 
 
 
@@ -41,7 +42,7 @@ import { ReplacePipe } from './pipes/replace.pipe';
     TextareaComponent,
     MatSelectSearchComponent,
     DynamicFieldDirective,
-
+    MatSelectSearchClearDirective,
     // Pipes
     SearchPipe,
     IsObservable,
@@ -67,7 +68,8 @@ import { ReplacePipe } from './pipes/replace.pipe';
     DatePipe
   ],
   exports: [
-
+    MatSelectSearchClearDirective,
+    MatSelectSearchComponent,
     DynamicFormComponent,
 
   ]

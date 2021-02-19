@@ -13,7 +13,7 @@ import { FieldConfig, FieldType } from './field.interface';
 
   <form class="dynamic-form" [formGroup]="form" (submit)="onSubmit($event)" autocomplete="off">
     <div class="row">
-      <ng-container *ngFor="let field of fields">
+      <ng-container *ngFor="let field of fields || []">
         <div
           [ngClass]="{
             'col-md-6': field.rowClass === 'col6' || !field.rowClass,
@@ -62,28 +62,32 @@ export class DynamicFormComponent implements OnInit, OnChanges {
     this.closeForm.emit();
   }
 
-  isVisible(field: FieldConfig, option = null): boolean {
-    const visible = this.dynamicFormService.isVisible(field, this.form, option);
-
-    if (field.visible === false) { return false; }
-    if (field.type !== FieldType.button) {
-      if (!visible) {
-        this.form.controls[field.key].setValidators(null);
-      } else {
-        this.form.controls[field.key].setValidators(this.dynamicFormService.bindValidations(field.validations || []));
+  isVisible(field: FieldConfig = null, option = null): boolean {
+    if (field == null) {
+      return false;
+    } else {
+      const visible = this.dynamicFormService.isVisible(field, this.form, option);
+      if (field.visible === false) { return false; }
+      if (field.type !== FieldType.button) {
+        if (!visible) {
+          this.form.controls[field.key].setValidators(null);
+        } else {
+          this.form.controls[field.key].setValidators(this.dynamicFormService.bindValidations(field.validations || []));
+        }
+        this.form.controls[field.key].updateValueAndValidity();
       }
-      this.form.controls[field.key].updateValueAndValidity();
+      // console.log(field, visible);
+      return visible;
     }
-    // console.log(field, visible);
-    return visible;
+
   }
 
 
   async fieldValue(data: { value: string; field: FieldConfig, object: any }) {
     this.fieldData.emit({ value: data.value, key: data.field.key, object: data.object });
-    const dataField = this.fields.find(f => f.filterValueKey === data.field.key);
+    const dataField = this.fields.find(f => f.filterValueKey && (f.filterValueKey === data.field.key));
     let option = null;
-    if (data.field.options) {
+    if (data.field && data.field.type === FieldType.select) {
       option = isObservable(data.field.options) ? await data.field.options.pipe(map((items: any[]) => items ? items.find(opt => opt.value === data.value) : null), first()).toPromise() :
         data.field.options.find(opt => opt.value === data.value); // TODO: add Null checking
     }
