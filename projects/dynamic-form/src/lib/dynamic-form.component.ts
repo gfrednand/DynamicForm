@@ -29,7 +29,7 @@ import { FieldConfig, FieldType } from './field.interface';
   styles: [
   ]
 })
-export class DynamicFormComponent implements  OnInit, OnChanges {
+export class DynamicFormComponent implements OnInit, OnChanges {
   @Input() fields: FieldConfig[] = [];
   @Input() formData: any = null;
   @Input() isFormOpen = true;
@@ -42,60 +42,64 @@ export class DynamicFormComponent implements  OnInit, OnChanges {
 
   selectedKeyValue = [];
   get value() {
-      return this.form.value;
+    return this.form.value;
   }
   constructor(private dynamicFormService: DynamicFormService) { }
 
   ngOnInit() {
-      // this.form = this.form && Object.keys(this.form.controls).length > 0 ? this.form : this.dynamicFormService.createControl(this.fields, this.formData);
-      // console.log(this.form);
-      if (!this.isFormOpen) {
-          this.form.reset();
-      }
+    // this.form = this.form && Object.keys(this.form.controls).length > 0 ? this.form : this.dynamicFormService.createControl(this.fields, this.formData);
+    // console.log(this.form);
+    if (!this.isFormOpen) {
+      this.form.reset();
+    }
   }
 
   ngOnChanges() {
-      this.ngOnInit();
+    this.ngOnInit();
   }
 
   cancelForm() {
-      this.closeForm.emit();
+    this.closeForm.emit();
   }
 
   isVisible(field: FieldConfig, option = null): boolean {
-      const visible = this.dynamicFormService.isVisible(field, this.form, option);
+    const visible = this.dynamicFormService.isVisible(field, this.form, option);
 
-      if (field.visible === false) { return false; }
-      if (field.type !== FieldType.button) {
-          if (!visible) {
-              this.form.controls[field.key].setValidators(null);
-          } else {
-              this.form.controls[field.key].setValidators(this.dynamicFormService.bindValidations(field.validations || []));
-          }
-          this.form.controls[field.key].updateValueAndValidity();
+    if (field.visible === false) { return false; }
+    if (field.type !== FieldType.button) {
+      if (!visible) {
+        this.form.controls[field.key].setValidators(null);
+      } else {
+        this.form.controls[field.key].setValidators(this.dynamicFormService.bindValidations(field.validations || []));
       }
-      // console.log(field, visible);
-      return visible;
+      this.form.controls[field.key].updateValueAndValidity();
+    }
+    // console.log(field, visible);
+    return visible;
   }
 
 
   async fieldValue(data: { value: string; field: FieldConfig, object: any }) {
-      this.fieldData.emit({ value: data.value, key: data.field.key, object: data.object });
-      const dataField = this.fields.find(f => f.filterValueKey === data.field.key);
-      const option = isObservable(data.field.options) ? await data.field.options.pipe(map((items: any[]) => items ? items.find(opt => opt.value === data.value) : null), first()).toPromise() :
-          data.field.options.find(opt => opt.value === data.value); // TODO: add Null checking
-      this.isVisible(data.field, option);
-      if (dataField) {
-          this.fields = this.fields.map((field) => {
-              return {
-                  ...field,
-              };
-          });
-      }
+    this.fieldData.emit({ value: data.value, key: data.field.key, object: data.object });
+    const dataField = this.fields.find(f => f.filterValueKey === data.field.key);
+    let option = null;
+    if (data.field.options) {
+      option = isObservable(data.field.options) ? await data.field.options.pipe(map((items: any[]) => items ? items.find(opt => opt.value === data.value) : null), first()).toPromise() :
+        data.field.options.find(opt => opt.value === data.value); // TODO: add Null checking
+    }
+
+    this.isVisible(data.field, option);
+    if (dataField) {
+      this.fields = this.fields.map((field) => {
+        return {
+          ...field,
+        };
+      });
+    }
   }
 
   onSubmit(event: Event) {
-      this.submit.emit(this.dynamicFormService.onSubmit(event, this.form, this.fields));
+    this.submit.emit(this.dynamicFormService.onSubmit(event, this.form, this.fields));
   }
 
 
