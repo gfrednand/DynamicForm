@@ -10,7 +10,8 @@ import { FieldConfig } from '../field.interface';
 
 `,
 
-  styles: []
+styles: [
+  ':host {display: grid }']
 })
 export class ButtonComponent implements OnInit {
   field: FieldConfig;

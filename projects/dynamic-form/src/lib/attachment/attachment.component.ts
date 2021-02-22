@@ -31,7 +31,8 @@ import { FieldConfig } from '../field.interface';
         [accept]="accept" type="file" /> 
   </div> 
 </div>`,
-  styles: [
+   styles: [
+    ':host { display: grid}',
     '.attachment{display: flex;  flex-direction: row; align-items: end;}',
     '.photo{max-width: 100%}',
     'img{  border-radius: 5px; margin-right: 10px;  border: 4px solid #404dbc;}',

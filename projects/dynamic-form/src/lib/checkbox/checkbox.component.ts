@@ -9,7 +9,8 @@ import { FieldConfig } from '../field.interface';
 </div>
 `,
   // host: {'class': 'col-md-6'},
-  styles: []
+  styles: [
+    ':host {display: grid }',]
 })
 export class CheckboxComponent implements OnInit {
   field: FieldConfig;

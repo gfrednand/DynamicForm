@@ -16,7 +16,8 @@ import { FieldConfig } from '../field.interface';
 </mat-form-field>
 `,
   // host: {'class': 'col-md-6'},
-  styles: []
+  styles: [
+    ':host {display: grid }',]
 })
 export class DateComponent implements OnInit {
   field: FieldConfig;

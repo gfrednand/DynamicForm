@@ -14,7 +14,9 @@ import { FieldConfig } from '../field.interface';
 </mat-form-field> 
 `,
   // host: {'class': 'col-md-6'},
-  styles: ['.danger { color:red }']
+  styles: [
+    ':host {display: grid }',
+    '.danger { color:red }']
 })
 export class InputComponent implements OnInit {
   field: FieldConfig;

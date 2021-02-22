@@ -43,6 +43,7 @@ import { FieldConfig } from '../field.interface';
 `,
   // host: {'class': 'col-md-6'},
   styles: [
+   ':host {display: grid }',
     '.additional-selection { opacity: 0.75; font-size: 0.75em; }',
     '.danger { color:red }'
   ]
