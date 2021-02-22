@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, } from '@angular/core';
+import { AfterContentChecked, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, Output, } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { isObservable } from 'rxjs';
 import { first, map } from 'rxjs/operators';
@@ -24,7 +24,7 @@ import { FieldConfig, FieldType } from './field.interface';
   styleUrls: ['dynamic-form.component.scss']
 
 })
-export class DynamicFormComponent implements OnInit, OnChanges {
+export class DynamicFormComponent implements OnChanges, AfterContentChecked {
   @Input() fields: FieldConfig[] = [];
   @Input() formData: any = null;
   @Input() isFormOpen = true;
@@ -39,9 +39,11 @@ export class DynamicFormComponent implements OnInit, OnChanges {
   get value() {
     return this.form.value;
   }
-  constructor(private dynamicFormService: DynamicFormService) { }
-
-  ngOnInit() {
+  constructor(private dynamicFormService: DynamicFormService, private changeDetector: ChangeDetectorRef) { }
+  ngAfterContentChecked(): void {
+    this.changeDetector.detectChanges();
+  }
+  ngOnChanges() {
     // this.form = this.form && Object.keys(this.form.controls).length > 0 ? this.form : this.dynamicFormService.createControl(this.fields, this.formData);
     // console.log(this.form);
     if (!this.isFormOpen) {
@@ -49,9 +51,6 @@ export class DynamicFormComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnChanges() {
-    this.ngOnInit();
-  }
 
   cancelForm() {
     this.closeForm.emit();

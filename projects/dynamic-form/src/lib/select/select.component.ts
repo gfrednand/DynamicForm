@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, Output, EventEmitter, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
+import { Component, OnInit, HostBinding, Output, EventEmitter, ChangeDetectionStrategy} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { isObservable, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -48,7 +48,7 @@ import { FieldConfig } from '../field.interface';
     '.danger { color:red }'
   ]
 })
-export class SelectComponent implements OnInit, AfterViewInit {
+export class SelectComponent implements OnInit{
   field: FieldConfig;
   group: FormGroup;
   @Output() fieldValue = new EventEmitter();
@@ -59,11 +59,6 @@ export class SelectComponent implements OnInit, AfterViewInit {
   // fieldOptions: any;
   // @HostBinding('class') rowClass = 'col-md-6';
   constructor() { }
-  ngAfterViewInit(): void {
-
-    // this.fieldOptions = this.field.options;
-
-  }
   ngOnInit() {
 
     this.filterVal = this.group.get(this.field.filterValueKey) ? this.group.get(this.field.filterValueKey).value : null;
