@@ -1,12 +1,12 @@
 {
   "name": "@gfrednand/dynamic-form",
-  "version": "0.0.18",
+  "version": "0.0.20",
   "peerDependencies": {
-    "@angular/cdk": "^11.2.0",
-    "@angular/common": "^11.0.9",
-    "@angular/core": "^11.0.9",
-    "@angular/forms": "~11.0.5",
-    "@angular/material": "^11.2.0",
+    "@angular/cdk": ">=8.2.3 <11.2.0",
+    "@angular/common": ">=8.2.0 <11.0.9",
+    "@angular/core": ">=8.2.0 <11.0.9",
+    "@angular/forms": ">=8.2.0 <11.0.5",
+    "@angular/material": ">=8.2.3 <11.2.0",
     "rxjs": "~6.6.0"
   },
   "repository": {
